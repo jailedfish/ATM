@@ -22,7 +22,6 @@ diesel::table! {
     position (id) {
         id -> Int4,
         name -> Varchar,
-        coords -> Nullable<Json>,
         type_ -> Varchar,
     }
 }

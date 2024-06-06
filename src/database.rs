@@ -1,9 +1,9 @@
 use diesel;
-use diesel::{Identifiable, Insertable, Queryable, Selectable};
-use diesel::sql_types::Json;
+use diesel::{Identifiable, Queryable, Selectable};
 
+use crate::schema::{barrel, driver, position};
 
-#[derive(Debug, Identifiable, Queryable, Selectable, Insertable)]
+#[derive(Debug, Queryable, Selectable)]
 #[diesel(table_name = driver)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Driver {
@@ -12,16 +12,15 @@ pub struct Driver {
     pub second_name: String,
 }
 
-#[derive(Debug, Identifiable, Queryable, Selectable, Insertable)]
-#[diesel(table_name = postition)]
+#[derive(Debug, Queryable, Selectable)]
+#[diesel(table_name = position)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Position {
     pub id: i32,
     pub name: String,
-    pub coords: Option<Json>,
     pub type_: String,
 }
-#[derive(Debug, Identifiable, Queryable, Selectable, Insertable)]
+#[derive(Debug, Queryable, Selectable)]
 #[diesel(table_name = barrel)]
 #[diesel(belongs_to(Position))]
 #[diesel(belongs_to(Driver))]
