@@ -1,5 +1,6 @@
 use diesel;
 use diesel::{Identifiable, Insertable, Queryable, Selectable};
+use diesel::sql_types::Json;
 
 
 #[derive(Debug, Identifiable, Queryable, Selectable, Insertable)]
@@ -17,7 +18,7 @@ pub struct Driver {
 pub struct Position {
     pub id: i32,
     pub name: String,
-    pub coords: Option<serde_json::Value>,
+    pub coords: Option<Json>,
     pub type_: String,
 }
 #[derive(Debug, Identifiable, Queryable, Selectable, Insertable)]
